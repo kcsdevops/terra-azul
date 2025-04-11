@@ -1,0 +1,18 @@
+# Define the resource group and location
+$resourceGroup = "rg-terraform-dev"
+$location = "brazilsouth"
+
+# Create the resource group
+New-AzResourceGroup -Name $resourceGroup -Location $location
+
+# Define a new, unique storage account name
+$storageAccountName = "acountblobterraform"
+
+# Create the storage account
+New-AzStorageAccount -ResourceGroupName $resourceGroup `
+  -Name $storageAccountName `
+  -Location $location `
+  -SkuName Standard_LRS `
+  -Kind StorageV2 `
+  -AllowBlobPublicAccess $false `
+  -MinimumTlsVersion TLS1_2
